@@ -1,8 +1,11 @@
+"""
+一个二维向量加法的例子，Vector(2,4) + Vextor(2,1) = Vector(4,5)
+"""
+
 from math import hypot
 
 
 class Vector:
-
     def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
@@ -23,3 +26,15 @@ class Vector:
 
     def __mul__(self, scalar):
         return Vector(self.x * scalar, self.y * scalar)
+
+
+if __name__ == '__main__':
+    v1 = Vector(2, 4)
+    v2 = Vector(2, 1)
+    print(v1 + v2)
+    v = Vector(3, 4)
+    print(abs(v))
+    print(v * 3)
+    print(abs(v * 3))
+
+
