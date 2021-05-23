@@ -38,8 +38,22 @@ class QuickSort:
         l[index], l[right] = l[right], l[index]
         return index
 
-    def topK(self, l: list, k: int):
-        pass
+    def _topK_solution(self, l: list, k: int, left: int, right: int):
+        if left >= right:
+            print(f"第{k}大元素为{l[left]}")
+            return
+        index = self.partition(l, left, right)
+        if index + 1 == k:
+            # 此时刚好
+            print(f"第{k}大元素为{l[index]}")
+            return
+        if k > index + 1:
+            self._topK_solution(l, k, left + 1, right)
+        elif k < index + 1:
+            self._topK_solution(l, k, left, right - 1)
+
+    def findTopK(self, l, k):
+        return self._topK_solution(l, k, 0, len(l) - 1)
 
 
 if __name__ == '__main__':
@@ -48,3 +62,5 @@ if __name__ == '__main__':
     with start_action(action_type="quickSort", l=l):
         s.quick_sort(l=l, left=0, right=len(l) - 1)
     print(l)
+
+    s.findTopK(l, 3)
